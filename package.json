@@ -1,6 +1,6 @@
 {
   "name": "@familyctx/expo",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Expo bindings for FamilyContext.",
   "homepage": "https://github.com/familyctx/expo#readme",
   "bugs": {
@@ -40,6 +40,7 @@
   },
   "peerDependencies": {
     "@familyctx/core": "^0.1.0",
+    "expo-local-authentication": ">=14",
     "expo-secure-store": ">=14",
     "react": ">=18"
   }

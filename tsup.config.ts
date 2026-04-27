@@ -9,6 +9,7 @@ export default defineConfig({
     "react",
     "@familyctx/core",
     "@familyctx/react",
+    "expo-local-authentication",
     "expo-secure-store",
   ],
 });
