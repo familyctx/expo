@@ -12,6 +12,8 @@ const SESSION_KEY = "familyctx.session";
 
 type FamilyCtxProviderProps = {
   children: ReactNode;
+  onPinRequired?: () => void;
+  onAuthFailed?: () => void;
 };
 
 export function FamilyCtxProvider({ children }: FamilyCtxProviderProps) {
