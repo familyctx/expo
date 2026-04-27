@@ -14,7 +14,7 @@ type FamilyCtxProviderProps = {
   children: ReactNode;
 };
 
-export function FamilyCtxProviderProps({ children }: FamilyCtxProviderProps) {
+export function FamilyCtxProvider({ children }: FamilyCtxProviderProps) {
   const storeRef = useRef<Store | null>(null);
   const [ready, setReady] = useState(false);
 
@@ -40,7 +40,7 @@ export function FamilyCtxProviderProps({ children }: FamilyCtxProviderProps) {
       }
     }
 
-    void hydrate;
+    void hydrate();
   }, [store]);
 
   useEffect(() => {
