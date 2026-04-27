@@ -7,6 +7,7 @@ import {
 import { FamilyCtxProvider as FamilyCoreCtxProvider } from "@familyctx/react";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import * as SecureStore from "expo-secure-store";
+import { FamilyCtxExpoProvider as ExpoContextProvider } from "./context";
 
 const SESSION_KEY = "familyctx.session";
 
@@ -16,7 +17,11 @@ type FamilyCtxProviderProps = {
   onAuthFailed?: () => void;
 };
 
-export function FamilyCtxProvider({ children }: FamilyCtxProviderProps) {
+export function FamilyCtxProvider({
+  children,
+  onPinRequired,
+  onAuthFailed,
+}: FamilyCtxProviderProps) {
   const storeRef = useRef<Store | null>(null);
   const [ready, setReady] = useState(false);
 
@@ -60,7 +65,14 @@ export function FamilyCtxProvider({ children }: FamilyCtxProviderProps) {
 
   if (!ready) return null;
 
+  const contextValue = {
+    ...(onPinRequired && { onPinRequired }),
+    ...(onAuthFailed && { onAuthFailed }),
+  };
+
   return (
-    <FamilyCoreCtxProvider store={store}>{children}</FamilyCoreCtxProvider>
+    <ExpoContextProvider value={contextValue}>
+      <FamilyCoreCtxProvider store={store}>{children}</FamilyCoreCtxProvider>
+    </ExpoContextProvider>
   );
 }
